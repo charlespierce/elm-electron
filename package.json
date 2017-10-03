@@ -1,0 +1,22 @@
+{
+  "name": "elm-electron",
+  "version": "1.0.0",
+  "description": "Elm App running in Electron",
+  "main": "index.js",
+  "scripts": {
+    "start": "electron main.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/charlespierce/elm-electron.git"
+  },
+  "author": "Charles Pierce",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/charlespierce/elm-electron/issues"
+  },
+  "homepage": "https://github.com/charlespierce/elm-electron#readme",
+  "devDependencies": {
+    "electron": "1.7.8"
+  }
+}
