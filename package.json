@@ -2,9 +2,16 @@
   "name": "elm-electron",
   "version": "1.0.0",
   "description": "Elm App running in Electron",
-  "main": "index.js",
+  "main": "dist/main.js",
   "scripts": {
-    "start": "electron main.js"
+    "clean": "rimraf dist/",
+    "elm": "elm make src/app/Main.elm --output dist/elm.js || true",
+    "prewatch": "npm run elm && npm run static",
+    "start": "electron .",
+    "static": "copyup src/* dist/",
+    "watch": "concurrently -k -s first -n \"ELM,STATIC,ELECTRON\" \"npm run watch:elm\" \"npm run watch:static\" \"npm run start\"",
+    "watch:elm": "watch \"npm run elm\" src/app",
+    "watch:static": "watch \"npm run static\" src/ -p=/app/"
   },
   "repository": {
     "type": "git",
@@ -17,6 +24,10 @@
   },
   "homepage": "https://github.com/charlespierce/elm-electron#readme",
   "devDependencies": {
-    "electron": "1.7.8"
+    "concurrently": "^3.5.0",
+    "copyfiles": "^1.2.0",
+    "electron": "1.7.8",
+    "rimraf": "^2.6.2",
+    "watch": "^1.0.2"
   }
 }

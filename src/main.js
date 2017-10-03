@@ -1,5 +1,6 @@
 'use strict';
 const Electron = require('electron');
+const Watch = require('watch');
 
 const app = Electron.app;
 const BrowserWindow = Electron.BrowserWindow;
@@ -32,5 +33,13 @@ app.on('window-all-closed', () => {
 app.on('activate', () => {
     if (!mainWindow) {
         createWindow();
+    }
+});
+
+Watch.watchTree(__dirname, (file, curr, prev) => {
+    if (typeof file !== "object" || curr !== null || prev !== null) {
+        if (mainWindow) {
+            mainWindow.reload();
+        }
     }
 });
